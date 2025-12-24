@@ -25,6 +25,7 @@ void setup() {
   delay(500);
   loadConfig();
   setupWiFi();
+   otaCheck();
 
   xTaskCreatePinnedToCore(ledTask, "ledTask", 2048, NULL, 1, NULL, 1);
   xTaskCreatePinnedToCore(buttonTask, "buttonTask", 2048, NULL, 1, NULL, 1);
@@ -33,14 +34,17 @@ void setup() {
   if (wifiConnected) {
     DEBUG_PRINT("Device ID  : "); DEBUG_PRINTLN(device_id);
     DEBUG_PRINT("Delay Time : "); DEBUG_PRINT(delay_time_str); DEBUG_PRINTLN(" ms");
+//    otaCheck();/
   }
 }
 
 void loop() {
   if (wifiConnected) {
     int delay_time = atoi(delay_time_str);
-    displayWifiCredentials();
-    sendDataToServer(buildJSON());
+//            otaCheck();/
+    //    updateAvailableOTA();
+//    displayWifiCredentials();
+    //    sendDataToServer(buildJSON());
     delay(delay_time);
   }
 }
